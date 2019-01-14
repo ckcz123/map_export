@@ -30,7 +30,7 @@ namespace map_export
             dict = new Dictionary<string, Bitmap>();
             modified = new HashSet<string>();
 
-            File.AppendAllLines(log, new []{"","-------------","C#操作日志：",""},Encoding.Default);
+            File.AppendAllLines(log, new []{"","-------------",""},Encoding.Default);
         }
 
         public string work()

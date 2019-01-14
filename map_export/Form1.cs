@@ -78,7 +78,7 @@ namespace map_export
             }
 
             if (!(Directory.Exists(h5Path) && Directory.Exists(h5Path + "\\libs") &&
-                  Directory.Exists(h5Path + "\\project") && Directory.Exists(h5Path + "\\main.js")))
+                  Directory.Exists(h5Path + "\\project") && File.Exists(h5Path + "\\main.js")))
             {
                 MessageBox.Show("不是有效的H5目录！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 textBox2.Focus();
@@ -86,7 +86,7 @@ namespace map_export
             }
 
             // 检查重复使用
-            if (Directory.Exists(h5Path + "\\error.log"))
+            if (File.Exists(h5Path + "\\error.log"))
             {
                 MessageBox.Show("你已经对该H5样板进行过转换操作，请重新选择一个崭新的H5样板。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 textBox2.Focus();
