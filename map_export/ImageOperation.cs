@@ -58,7 +58,13 @@ namespace map_export
                     continue;
                 }
 
-                if (mode == 0)
+                if (items[0].Equals("moveSound:"))
+                {
+                    mode = 3;
+                    continue;
+                }
+
+                if (mode == 0 || mode == 3)
                 {
                     if (items.Length == 2 && move(directory+items[0], items[1]))
                         continue;
@@ -109,14 +115,19 @@ namespace map_export
         {
             try
             {
-                // 检测src是不是合法的文件
-                if (!src.ToLower().EndsWith(".jpg") && !src.ToLower().EndsWith(".png"))
+                string extension = Path.GetExtension(src);
+                if (string.IsNullOrEmpty(extension))
                 {
-                    File.AppendAllText(log, "不合法的图片文件："+src+"\n", Encoding.Default);
-                    Bitmap bitmap = new Bitmap(32,32);
-                    bitmap.Save(target);
-                    bitmap.Dispose();
-                    return true;
+                    if (mode == 0)
+                    {
+                        File.AppendAllText(log, "不合法的图片文件：" + src + "\n", Encoding.Default);
+                        Bitmap bitmap = new Bitmap(32, 32);
+                        bitmap.Save(target);
+                        bitmap.Dispose();
+                        return true;
+                    }
+                    if (mode == 3)
+                        return true;
                 }
 
                 File.Copy(src, target, true);

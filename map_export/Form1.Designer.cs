@@ -43,6 +43,7 @@
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -105,6 +106,7 @@
             this.checkBox1.TabIndex = 5;
             this.checkBox1.Text = "剪裁地图";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // checkBox2
             // 
@@ -152,7 +154,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::map_export.Properties.Resources.question;
-            this.pictureBox1.Location = new System.Drawing.Point(99, 164);
+            this.pictureBox1.Location = new System.Drawing.Point(166, 164);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(14, 14);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -209,11 +211,24 @@
             this.checkBox4.Text = "仅生成配置文件";
             this.checkBox4.UseVisualStyleBackColor = true;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "13*13",
+            "15*15"});
+            this.comboBox1.Location = new System.Drawing.Point(92, 162);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(60, 20);
+            this.comboBox1.TabIndex = 16;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 329);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.pictureBox3);
@@ -261,6 +276,7 @@
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

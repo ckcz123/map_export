@@ -16,6 +16,7 @@ namespace map_export
             textBox1.Text = Settings.Default.rmPath;
             textBox2.Text = Settings.Default.h5Path;
             setConfigChecked();
+            comboBox1.SelectedIndex = 0;
 
             ToolTip tip = new ToolTip()
             {
@@ -27,7 +28,7 @@ namespace map_export
                 UseFading = true
             };
 
-            tip.SetToolTip(pictureBox1, "是否自动将标准20*15尺寸的地图剪切成适合H5的13*13大小。");
+            tip.SetToolTip(pictureBox1, "是否自动将标准20*15尺寸的地图剪切成适合H5的13*13或15*15大小。");
             tip.SetToolTip(pictureBox2, "当RM塔的地图名并非\"1001\"这样的格式时，需要人工指定转换开始的初始地图。\n" +
                                         "这里的数字对应的是RM地图设置的ID:xxx。\n" +
                                         "你可能需要在强制转换完毕后再手动调整H5的地图顺序。");
@@ -110,7 +111,10 @@ namespace map_export
             }
 
             string arguments = "\"" + rmPath + "\" \"" + h5Path + "\"";
-            if (checkBox1.Checked) arguments += " -c";
+            if (checkBox1.Checked)
+            {
+                arguments += " -c " + (comboBox1.SelectedIndex==0?"13":"15");
+            }
             if (checkBox2.Checked)
             {
                 arguments += " -f " + numericUpDown1.Text;
@@ -174,6 +178,11 @@ namespace map_export
             Settings.Default.rmPath = textBox1.Text;
             Settings.Default.h5Path = textBox2.Text;
             Settings.Default.Save();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            comboBox1.Enabled = checkBox1.Checked;
         }
 
     }
