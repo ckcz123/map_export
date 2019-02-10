@@ -29,9 +29,8 @@ namespace map_export
             };
 
             tip.SetToolTip(pictureBox1, "是否自动将标准20*15尺寸的地图剪切成适合H5的13*13或15*15大小。");
-            tip.SetToolTip(pictureBox2, "当RM塔的地图名并非\"1001\"这样的格式时，需要人工指定转换的开始地图到结束地图。\n" +
-                                        "这里的数字对应的是RM地图设置的ID:xxx。\n" +
-                                        "结束地图不得小于开始地图，但是可以大于最大地图编号。\n" +
+            tip.SetToolTip(pictureBox2, "当RM塔的地图名并非\"1001\"这样的格式时，需要人工指定转换的开始地图编号到结束地图编号。\n" +
+                                        "这里的数字对应的是RM地图设置的ID:xxx，且按地图文件顺序。\n" +
                                         "你可能需要在强制转换完毕后再手动调整H5的地图顺序。");
             tip.SetToolTip(pictureBox3, "勾选后会将所有音频文件也一并转移，游戏可能会变得非常大。");
             tip.SetToolTip(pictureBox4, "仅需在第一次转换塔时勾选此项，会生成一个config.json配置文件。\n可按需对该配置文件进行自定义修改后再重新进行导出。");
