@@ -29,8 +29,9 @@ namespace map_export
             };
 
             tip.SetToolTip(pictureBox1, "是否自动将标准20*15尺寸的地图剪切成适合H5的13*13或15*15大小。");
-            tip.SetToolTip(pictureBox2, "当RM塔的地图名并非\"1001\"这样的格式时，需要人工指定转换开始的初始地图。\n" +
+            tip.SetToolTip(pictureBox2, "当RM塔的地图名并非\"1001\"这样的格式时，需要人工指定转换的开始地图到结束地图。\n" +
                                         "这里的数字对应的是RM地图设置的ID:xxx。\n" +
+                                        "结束地图不得小于开始地图，但是可以大于最大地图编号。\n" +
                                         "你可能需要在强制转换完毕后再手动调整H5的地图顺序。");
             tip.SetToolTip(pictureBox3, "勾选后会将所有音频文件也一并转移，游戏可能会变得非常大。");
             tip.SetToolTip(pictureBox4, "仅需在第一次转换塔时勾选此项，会生成一个config.json配置文件。\n可按需对该配置文件进行自定义修改后再重新进行导出。");
@@ -39,7 +40,7 @@ namespace map_export
         private void button1_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
-            dialog.RootFolder = Environment.SpecialFolder.MyComputer;
+            // dialog.RootFolder = Environment.SpecialFolder.MyComputer;
             dialog.SelectedPath = textBox1.Text;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
@@ -117,7 +118,16 @@ namespace map_export
             }
             if (checkBox2.Checked)
             {
-                arguments += " -f " + numericUpDown1.Text;
+                /*
+                decimal start = numericUpDown1.Value, end = numericUpDown2.Value;
+                if (start > end)
+                {
+                    MessageBox.Show("开始楼层不得大于结束楼层！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    numericUpDown1.Focus();
+                    return;
+                }
+                 * */
+                arguments += " -f " + numericUpDown1.Text + " " + numericUpDown2.Text;
             }
             if (checkBox3.Checked) arguments += " -a";
             if (checkBox4.Checked) arguments += " -o";
@@ -164,7 +174,7 @@ namespace map_export
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            numericUpDown1.Enabled = checkBox2.Checked;
+            numericUpDown1.Enabled = numericUpDown2.Enabled = checkBox2.Checked;
             if (checkBox2.Checked) numericUpDown1.Focus();
         }
 
